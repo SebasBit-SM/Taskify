@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GestionTareas.Views.AjustesPage"
+    BackgroundColor="{StaticResource Background}"
+    Title="Ajustes"
+    NavigationPage.HasBackButton="False"
+    Loaded="OnPageLoaded">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <!-- CONTENIDO -->
+
+        <ScrollView
+            Grid.Row="0">
+
+            <VerticalStackLayout
+                Padding="24,28,24,20"
+                Spacing="24">
+
+                <!-- ENCABEZADO -->
+
+                <VerticalStackLayout
+                    x:Name="HeaderSection"
+                    Spacing="5"
+                    Opacity="0">
+
+                    <Label
+                        Text="CONFIGURACIÓN"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource Accent}"
+                        CharacterSpacing="2" />
+
+                    <Label
+                        Text="Ajustes"
+                        Style="{StaticResource TitleLabel}"
+                        FontSize="30" />
+
+                    <Label
+                        Text="Personaliza tu experiencia en Taskify."
+                        Style="{StaticResource SubtitleLabel}" />
+
+                </VerticalStackLayout>
+
+                <!-- GENERAL -->
+
+                <VerticalStackLayout
+                    x:Name="GeneralSection"
+                    Spacing="10"
+                    Opacity="0">
+
+                    <Label
+                        Text="GENERAL"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextMuted}"
+                        CharacterSpacing="1.5" />
+
+
+                    <!-- TEMA -->
+
+                    <Border
+                        Style="{StaticResource CardBorder}"
+                        Padding="16">
+
+                        <Grid
+                            ColumnDefinitions="*,Auto"
+                            ColumnSpacing="15">
+
+                            <VerticalStackLayout
+                                Spacing="3"
+                                VerticalOptions="Center">
+
+                                <Label
+                                    Text="Tema"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource TextPrimary}" />
+
+                                <Label
+                                    Text="Indigo Gold"
+                                    FontSize="13"
+                                    TextColor="{StaticResource TextSecondary}" />
+
+                            </VerticalStackLayout>
+
+
+                            <Border
+                                Grid.Column="1"
+                                WidthRequest="42"
+                                HeightRequest="24"
+                                BackgroundColor="{StaticResource Accent}"
+                                StrokeThickness="0"
+                                VerticalOptions="Center">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle
+                                        CornerRadius="12" />
+                                </Border.StrokeShape>
+
+                                <Border
+                                    WidthRequest="18"
+                                    HeightRequest="18"
+                                    BackgroundColor="#FFFFFF"
+                                    StrokeThickness="0"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Margin="0,0,3,0">
+
+                                    <Border.StrokeShape>
+                                        <RoundRectangle
+                                            CornerRadius="9" />
+                                    </Border.StrokeShape>
+
+                                </Border>
+
+                            </Border>
+
+                        </Grid>
+
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <!-- PREFERENCIAS -->
+
+                <VerticalStackLayout
+                    x:Name="PreferencesSection"
+                    Spacing="10"
+                    Opacity="0">
+
+                    <Label
+                        Text="PREFERENCIAS"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextMuted}"
+                        CharacterSpacing="1.5" />
+
+
+                    <!-- ANIMACIONES -->
+
+                    <Border
+                        Style="{StaticResource CardBorder}"
+                        Padding="16">
+
+                        <Grid
+                            ColumnDefinitions="*,Auto"
+                            ColumnSpacing="15">
+
+                            <VerticalStackLayout
+                                Spacing="3"
+                                VerticalOptions="Center">
+
+                                <Label
+                                    Text="Animaciones"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource TextPrimary}" />
+
+                                <Label
+                                    Text="Transiciones de interfaz"
+                                    FontSize="13"
+                                    TextColor="{StaticResource TextSecondary}" />
+
+                            </VerticalStackLayout>
+
+
+                            <Border
+                                Grid.Column="1"
+                                WidthRequest="42"
+                                HeightRequest="24"
+                                BackgroundColor="{StaticResource Accent}"
+                                StrokeThickness="0"
+                                VerticalOptions="Center">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle
+                                        CornerRadius="12" />
+                                </Border.StrokeShape>
+
+                                <Border
+                                    WidthRequest="18"
+                                    HeightRequest="18"
+                                    BackgroundColor="#FFFFFF"
+                                    StrokeThickness="0"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Margin="0,0,3,0">
+
+                                    <Border.StrokeShape>
+                                        <RoundRectangle
+                                            CornerRadius="9" />
+                                    </Border.StrokeShape>
+
+                                </Border>
+
+                            </Border>
+
+                        </Grid>
+
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <!-- ACERCA DE -->
+
+                <VerticalStackLayout
+                    x:Name="AboutSection"
+                    Spacing="10"
+                    Opacity="0">
+
+                    <Label
+                        Text="ACERCA DE"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextMuted}"
+                        CharacterSpacing="1.5" />
+
+
+                    <Border
+                        Style="{StaticResource CardBorder}"
+                        Padding="18">
+
+                        <VerticalStackLayout
+                            Spacing="6">
+
+                            <Label
+                                Text="TASKIFY"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource Accent}" />
+
+                            <Label
+                                Text="Gestión de tareas"
+                                FontSize="14"
+                                TextColor="{StaticResource TextPrimary}" />
+
+                            <Label
+                                Text="Versión 1.0"
+                                FontSize="12"
+                                TextColor="{StaticResource TextMuted}" />
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+
+                    <!-- DESCRIPCIÓN -->
+
+                    <Label
+                        Text="Una aplicación sencilla para organizar tus actividades y mantener el control de tu día."
+                        FontSize="13"
+                        TextColor="{StaticResource TextSecondary}"
+                        HorizontalTextAlignment="Center"
+                        Margin="15,5,15,10" />
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+        <!-- NAVEGACIÓN -->
+
+        <Border
+            Grid.Row="1"
+            Background="{StaticResource Surface}"
+            Stroke="{StaticResource BorderColor}"
+            StrokeThickness="1"
+            Padding="8,9">
+
+            <Grid
+                ColumnDefinitions="*,*,*">
+
+
+                <!-- INICIO -->
+
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    Spacing="2">
+
+                    <VerticalStackLayout.GestureRecognizers>
+
+                        <TapGestureRecognizer
+                            Tapped="OnInicioTapped" />
+
+                    </VerticalStackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="INICIO"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextMuted}"
+                        HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+
+
+                <!-- TAREAS -->
+
+                <VerticalStackLayout
+                    Grid.Column="1"
+                    Spacing="2">
+
+                    <VerticalStackLayout.GestureRecognizers>
+
+                        <TapGestureRecognizer
+                            Tapped="OnTareasTapped" />
+
+                    </VerticalStackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="TAREAS"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextMuted}"
+                        HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+
+
+                <!-- AJUSTES -->
+
+                <VerticalStackLayout
+                    Grid.Column="2"
+                    Spacing="2">
+
+                    <Label
+                        Text="AJUSTES"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource Accent}"
+                        HorizontalOptions="Center" />
+
+                    <BoxView
+                        WidthRequest="22"
+                        HeightRequest="2"
+                        BackgroundColor="{StaticResource Accent}"
+                        HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

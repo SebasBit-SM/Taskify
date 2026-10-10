@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GestionTareas.Views.TareasPage"
+    BackgroundColor="{StaticResource Background}"
+    Title="Mis tareas"
+    NavigationPage.HasBackButton="False">
+
+    <Grid
+        RowDefinitions="*,Auto">
+
+        <!-- CONTENIDO -->
+
+        <ScrollView
+            Grid.Row="0">
+
+            <VerticalStackLayout
+                Padding="24,28,24,20"
+                Spacing="22">
+
+                <!-- ENCABEZADO -->
+
+                <VerticalStackLayout
+                    x:Name="HeaderSection"
+                    Spacing="5"
+                    Opacity="0">
+
+                    <Label
+                        Text="TAREAS"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource Accent}"
+                        CharacterSpacing="2" />
+
+                    <Label
+                        Text="Mis tareas"
+                        Style="{StaticResource TitleLabel}"
+                        FontSize="30" />
+
+                    <Label
+                        Text="Organiza y administra tus actividades."
+                        Style="{StaticResource SubtitleLabel}" />
+
+                </VerticalStackLayout>
+
+                <!-- FILTROS -->
+
+                <VerticalStackLayout
+                    x:Name="FilterSection"
+                    Spacing="10"
+                    Opacity="0">
+
+                    <Label
+                        Text="Filtrar por"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextSecondary}" />
+
+                    <Grid
+                        ColumnDefinitions="*,*,*"
+                        ColumnSpacing="8">
+
+
+                        <!-- TODAS -->
+
+                        <Border
+                            x:Name="TodasFilter"
+                            Grid.Column="0"
+                            Padding="10,9"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeThickness="1"
+                            Background="{StaticResource Surface}">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle
+                                    CornerRadius="8" />
+                            </Border.StrokeShape>
+
+                            <Border.GestureRecognizers>
+
+                                <TapGestureRecognizer
+                                    Tapped="OnTodasTapped" />
+
+                            </Border.GestureRecognizers>
+
+                            <Label
+                                Text="Todas"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource TextSecondary}"
+                                HorizontalOptions="Center" />
+
+                        </Border>
+
+
+                        <!-- PENDIENTES -->
+
+                        <Border
+                            x:Name="PendientesFilter"
+                            Grid.Column="1"
+                            Padding="10,9"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeThickness="1"
+                            Background="{StaticResource Surface}">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle
+                                    CornerRadius="8" />
+                            </Border.StrokeShape>
+
+                            <Border.GestureRecognizers>
+
+                                <TapGestureRecognizer
+                                    Tapped="OnPendientesTapped" />
+
+                            </Border.GestureRecognizers>
+
+                            <Label
+                                Text="Pendientes"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource TextSecondary}"
+                                HorizontalOptions="Center" />
+
+                        </Border>
+
+
+                        <!-- COMPLETADAS -->
+
+                        <Border
+                            x:Name="CompletadasFilter"
+                            Grid.Column="2"
+                            Padding="10,9"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeThickness="1"
+                            Background="{StaticResource Surface}">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle
+                                    CornerRadius="8" />
+                            </Border.StrokeShape>
+
+                            <Border.GestureRecognizers>
+
+                                <TapGestureRecognizer
+                                    Tapped="OnCompletadasTapped" />
+
+                            </Border.GestureRecognizers>
+
+                            <Label
+                                Text="Completadas"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource TextSecondary}"
+                                HorizontalOptions="Center" />
+
+                        </Border>
+
+                    </Grid>
+
+                </VerticalStackLayout>
+
+                <!-- RESUMEN -->
+
+                <Border
+                    x:Name="SummarySection"
+                    Style="{StaticResource CardBorder}"
+                    Padding="18"
+                    Opacity="0">
+
+                    <Grid
+                        ColumnDefinitions="*,Auto,*">
+
+
+                        <!-- PENDIENTES -->
+
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            Spacing="2">
+
+                            <Label
+                                Text="{Binding TareasPendientes}"
+                                FontSize="27"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource Accent}"
+                                HorizontalOptions="Center" />
+
+                            <Label
+                                Text="Pendientes"
+                                FontSize="12"
+                                TextColor="{StaticResource TextSecondary}"
+                                HorizontalOptions="Center" />
+
+                        </VerticalStackLayout>
+
+
+                        <!-- SEPARADOR -->
+
+                        <BoxView
+                            Grid.Column="1"
+                            WidthRequest="1"
+                            HeightRequest="35"
+                            BackgroundColor="{StaticResource BorderColor}"
+                            VerticalOptions="Center" />
+
+
+                        <!-- COMPLETADAS -->
+
+                        <VerticalStackLayout
+                            Grid.Column="2"
+                            Spacing="2">
+
+                            <Label
+                                Text="{Binding TareasCompletadas}"
+                                FontSize="27"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource Success}"
+                                HorizontalOptions="Center" />
+
+                            <Label
+                                Text="Completadas"
+                                FontSize="12"
+                                TextColor="{StaticResource TextSecondary}"
+                                HorizontalOptions="Center" />
+
+                        </VerticalStackLayout>
+
+                    </Grid>
+
+                </Border>
+
+                <!-- LISTA -->
+
+                <VerticalStackLayout
+                    x:Name="TaskSection"
+                    Spacing="10"
+                    Opacity="0">
+
+                    <Grid
+                        ColumnDefinitions="*,Auto">
+
+                        <Label
+                            Text="Lista de tareas"
+                            FontSize="19"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource TextPrimary}"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            Text="{Binding FiltroActual}"
+                            Grid.Column="1"
+                            FontSize="12"
+                            TextColor="{StaticResource TextMuted}"
+                            VerticalOptions="Center" />
+
+                    </Grid>
+
+                    <!-- COLECCIÓN DE TAREAS -->
+
+                    <CollectionView
+                        ItemsSource="{Binding TareasFiltradas}"
+                        SelectionMode="None"
+                        VerticalScrollBarVisibility="Never">
+
+                        <CollectionView.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <!-- TARJETA -->
+
+                                <Border
+                                    x:Name="TaskCard"
+                                    Style="{StaticResource CardBorder}"
+                                    Margin="0,0,0,10"
+                                    Padding="0">
+
+                                    <Grid
+                                        ColumnDefinitions="5,Auto,*,Auto"
+                                        ColumnSpacing="10">
+
+                                        <!-- PRIORIDAD -->
+
+                                        <BoxView
+                                            Grid.Column="0"
+                                            BackgroundColor="{Binding PrioridadColor}"
+                                            CornerRadius="2"
+                                            VerticalOptions="Fill" />
+
+                                        <!-- CHECKBOX -->
+
+                                        <CheckBox
+                                            Grid.Column="1"
+                                            IsChecked="{Binding EsCompletada}"
+                                            Color="{StaticResource Accent}"
+                                            VerticalOptions="Start"
+                                            Margin="4,14,0,0"
+                                            CheckedChanged="OnTareaCompletadaChanged" />
+
+                                        <!-- INFORMACIÓN -->
+
+                                        <VerticalStackLayout
+                                            Grid.Column="2"
+                                            Spacing="5"
+                                            Padding="0,14,0,14"
+                                            VerticalOptions="Center">
+
+
+                                            <!-- TÍTULO -->
+
+                                            <Label
+                                                Text="{Binding Titulo}"
+                                                FontSize="16"
+                                                FontAttributes="Bold"
+                                                TextColor="{StaticResource TextPrimary}"
+                                                LineBreakMode="TailTruncation" />
+
+
+                                            <!-- DESCRIPCIÓN -->
+
+                                            <Label
+                                                Text="{Binding Descripcion}"
+                                                FontSize="12"
+                                                TextColor="{StaticResource TextSecondary}"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="2" />
+
+
+                                            <!-- ESTADO -->
+
+                                            <Label
+                                                Text="{Binding EstadoTexto}"
+                                                FontSize="12"
+                                                TextColor="{StaticResource TextSecondary}" />
+
+
+                                            <!-- PRIORIDAD -->
+
+                                            <HorizontalStackLayout
+                                                Spacing="5">
+
+                                                <Label
+                                                    Text="{Binding PrioridadIcono}"
+                                                    FontSize="10"
+                                                    TextColor="{Binding PrioridadColor}"
+                                                    VerticalOptions="Center" />
+
+                                                <Label
+                                                    Text="{Binding Prioridad}"
+                                                    FontSize="12"
+                                                    FontAttributes="Bold"
+                                                    TextColor="{Binding PrioridadColor}"
+                                                    VerticalOptions="Center" />
+
+                                            </HorizontalStackLayout>
+
+                                        </VerticalStackLayout>
+
+                                        <!-- ACCIONES -->
+
+                                        <VerticalStackLayout
+                                            Grid.Column="3"
+                                            Spacing="2"
+                                            VerticalOptions="Center"
+                                            Margin="0,0,5,0">
+
+                                            <!-- EDITAR -->
+
+                                            <Button
+                                                Text="✎"
+                                                TextColor="{StaticResource Accent}"
+                                                BackgroundColor="Transparent"
+                                                FontSize="19"
+                                                Padding="7"
+                                                HeightRequest="42"
+                                                WidthRequest="42"
+                                                CommandParameter="{Binding}"
+                                                Clicked="OnEditarTareaClicked" />
+
+                                            <!-- ELIMINAR -->
+
+                                            <Button
+                                                Text="×"
+                                                TextColor="{StaticResource Danger}"
+                                                BackgroundColor="Transparent"
+                                                FontSize="22"
+                                                Padding="7"
+                                                HeightRequest="42"
+                                                WidthRequest="42"
+                                                CommandParameter="{Binding}"
+                                                Clicked="OnEliminarTareaClicked" />
+
+                                        </VerticalStackLayout>
+
+                                    </Grid>
+
+                                </Border>
+
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+
+                        <!-- SIN RESULTADOS -->
+
+                        <CollectionView.EmptyView>
+
+                            <Border
+                                Style="{StaticResource CardBorder}"
+                                Padding="25"
+                                Margin="0,5,0,0">
+
+                                <VerticalStackLayout
+                                    Spacing="8"
+                                    HorizontalOptions="Center">
+
+                                    <Label
+                                        Text="No hay tareas"
+                                        FontSize="18"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource TextPrimary}"
+                                        HorizontalOptions="Center" />
+
+                                    <Label
+                                        Text="No hay tareas que coincidan con el filtro seleccionado."
+                                        FontSize="13"
+                                        TextColor="{StaticResource TextSecondary}"
+                                        HorizontalTextAlignment="Center"
+                                        HorizontalOptions="Center" />
+
+                                </VerticalStackLayout>
+
+                            </Border>
+
+                        </CollectionView.EmptyView>
+
+                    </CollectionView>
+
+                </VerticalStackLayout>
+
+                <!-- NUEVA TAREA -->
+
+                <Button
+                    x:Name="NewTaskButton"
+                    Text="+  Nueva tarea"
+                    Style="{StaticResource PrimaryButton}"
+                    Margin="0,4,0,5"
+                    Clicked="OnNuevaTareaClicked"
+                    Opacity="0" />
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+        <!-- NAVEGACIÓN -->
+
+        <Border
+            Grid.Row="1"
+            Background="{StaticResource Surface}"
+            Stroke="{StaticResource BorderColor}"
+            StrokeThickness="1"
+            Padding="8,9">
+
+            <Grid
+                ColumnDefinitions="*,*,*">
+
+
+                <!-- INICIO -->
+
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    Spacing="2">
+
+                    <VerticalStackLayout.GestureRecognizers>
+
+                        <TapGestureRecognizer
+                            Tapped="OnInicioTapped" />
+
+                    </VerticalStackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="INICIO"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextMuted}"
+                        HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+
+
+                <!-- TAREAS -->
+
+                <VerticalStackLayout
+                    Grid.Column="1"
+                    Spacing="2">
+
+                    <Label
+                        Text="TAREAS"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource Accent}"
+                        HorizontalOptions="Center" />
+
+                    <BoxView
+                        WidthRequest="22"
+                        HeightRequest="2"
+                        BackgroundColor="{StaticResource Accent}"
+                        HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+
+
+                <!-- AJUSTES -->
+
+                <VerticalStackLayout
+                    Grid.Column="2"
+                    Spacing="2">
+
+                    <VerticalStackLayout.GestureRecognizers>
+
+                        <TapGestureRecognizer
+                            Tapped="OnAjustesTapped" />
+
+                    </VerticalStackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="AJUSTES"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextMuted}"
+                        HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

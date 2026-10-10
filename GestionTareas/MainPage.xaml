@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GestionTareas.MainPage"
+    BackgroundColor="{StaticResource Background}"
+    NavigationPage.HasBackButton="False">
+
+    <ScrollView>
+
+        <Grid
+            Padding="28,35,28,25"
+            RowDefinitions="Auto,*,Auto">
+
+            <!-- ENCABEZADO -->
+
+            <VerticalStackLayout
+                x:Name="HeaderSection"
+                Grid.Row="0"
+                Spacing="6"
+                Opacity="0">
+
+                <HorizontalStackLayout
+                    Spacing="10"
+                    HorizontalOptions="Center">
+
+                    <Label
+                        Text="TASKIFY"
+                        FontSize="32"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource Primary}"
+                        VerticalOptions="Center" />
+
+                </HorizontalStackLayout>
+
+                <Label
+                    Text="Gestión de tareas"
+                    FontSize="14"
+                    TextColor="{StaticResource TextSecondary}"
+                    HorizontalOptions="Center" />
+
+            </VerticalStackLayout>
+
+            <!-- FORMULARIO -->
+
+            <VerticalStackLayout
+                x:Name="FormSection"
+                Grid.Row="1"
+                VerticalOptions="Center"
+                Spacing="18"
+                Opacity="0">
+
+
+                <!-- TÍTULO -->
+
+                <VerticalStackLayout
+                    Spacing="5">
+
+                    <Label
+                        Text="Bienvenido"
+                        FontSize="28"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextPrimary}" />
+
+                    <Label
+                        Text="Inicia sesión para continuar."
+                        Style="{StaticResource SubtitleLabel}" />
+
+                </VerticalStackLayout>
+
+                <!-- USUARIO -->
+
+                <VerticalStackLayout
+                    Spacing="7">
+
+                    <Label
+                        Text="Usuario"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextPrimary}" />
+
+                    <Border
+                        Style="{StaticResource CardBorder}"
+                        Padding="14,0">
+
+                        <Grid
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="10">
+
+                            <Label
+                                Text="○"
+                                FontSize="22"
+                                TextColor="{StaticResource Accent}"
+                                VerticalOptions="Center" />
+
+                            <Entry
+                                x:Name="UsuarioEntry"
+                                Grid.Column="1"
+                                Placeholder="Ingresa tu usuario"
+                                TextColor="{StaticResource TextPrimary}"
+                                PlaceholderColor="{StaticResource TextSecondary}"
+                                BackgroundColor="Transparent"
+                                HeightRequest="52"
+                                ClearButtonVisibility="WhileEditing" />
+
+                        </Grid>
+
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <!-- CONTRASEÑA -->
+
+                <VerticalStackLayout
+                    Spacing="7">
+
+                    <Label
+                        Text="Contraseña"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextPrimary}" />
+
+                    <Border
+                        Style="{StaticResource CardBorder}"
+                        Padding="14,0">
+
+                        <Grid
+                            ColumnDefinitions="Auto,*,Auto"
+                            ColumnSpacing="8">
+
+                            <Label
+                                Text="●"
+                                FontSize="16"
+                                TextColor="{StaticResource Accent}"
+                                VerticalOptions="Center" />
+
+                            <Entry
+                                x:Name="ClaveEntry"
+                                Grid.Column="1"
+                                Placeholder="Ingresa tu contraseña"
+                                TextColor="{StaticResource TextPrimary}"
+                                PlaceholderColor="{StaticResource TextSecondary}"
+                                BackgroundColor="Transparent"
+                                HeightRequest="52"
+                                IsPassword="True" />
+
+                            <Button
+                                x:Name="MostrarClaveButton"
+                                Grid.Column="2"
+                                Text="Mostrar"
+                                Style="{StaticResource TextButton}"
+                                Clicked="OnMostrarClaveClicked"
+                                VerticalOptions="Center" />
+
+                        </Grid>
+
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <!-- ERROR -->
+
+                <Border
+                    x:Name="ErrorContainer"
+                    IsVisible="False"
+                    Background="{StaticResource DangerLight}"
+                    StrokeThickness="0"
+                    Padding="12">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8" />
+                    </Border.StrokeShape>
+
+                    <Label
+                        x:Name="ErrorLabel"
+                        Text="Usuario o contraseña incorrectos."
+                        FontSize="13"
+                        TextColor="{StaticResource Danger}"
+                        HorizontalTextAlignment="Center" />
+
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- BOTÓN -->
+
+            <Button
+                x:Name="LoginButton"
+                Grid.Row="2"
+                Text="Iniciar sesión"
+                Style="{StaticResource PrimaryButton}"
+                Margin="0,20,0,0"
+                Clicked="OnIniciarSesionClicked"
+                Opacity="0" />
+
+        </Grid>
+
+    </ScrollView>
+
+</ContentPage>
